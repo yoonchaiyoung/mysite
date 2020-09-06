@@ -74,11 +74,11 @@ python manage.py createsuperuser
     http://127.0.0.1:8888 로 접근
 
 
-11. /assets/** URL을 /static/ 경로로 매핑
-    STATICFILES_DIR = (
+11. /assets/** URL을 /static/ 경로로 매핑(settings.py 파일)
+    STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'statics'),
-     )
-     STATIC_URL = '/assets/'
+    )
+    STATIC_URL = '/assets/'
 
 
 ========================================================================================================================
