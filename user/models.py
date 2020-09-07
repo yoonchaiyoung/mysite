@@ -1,4 +1,5 @@
 from MySQLdb import connect
+from MySQLdb.cursors import DictCursor
 from django.db import models
 
 def insert(name, email, password, gender):
@@ -16,6 +17,27 @@ def insert(name, email, password, gender):
     # 자원 정리
     cursor.close()
     conn.close()
+
+def fetchone(email, password):
+    conn = getconnection()
+    cursor = conn.cursor(DictCursor)
+
+    sql = '''
+            select no, name
+            from user
+            where email=%s
+            and password=password(%s)
+            '''
+    cursor.execute(sql, (email, password))
+    result = cursor.fetchone()
+
+    # 자원 정리
+    cursor.close()
+    conn.close()
+
+    return result
+
+
 
 def getconnection():
     return connect(
