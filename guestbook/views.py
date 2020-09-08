@@ -23,7 +23,7 @@ def add(request):
 
     guestbookmodel.insert(name, password, message)
 
-    return HttpResponseRedirect('/guestbook')
+    return HttpResponseRedirect('guestbook/index.html')
 
 
 def deleteform(request):
@@ -35,4 +35,4 @@ def delete(request):
     password = request.POST['password']
 
     guestbookmodel.delete(no, password)
-    return HttpResponseRedirect('/guestbook')
+    return HttpResponseRedirect('guestbook/index.html')

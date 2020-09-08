@@ -39,6 +39,26 @@ def fetchone(email, password):
 
 
 
+# def fetchonebyno(no):
+#     conn = getconnection()
+#     cursor = conn.cursor(DictCursor)
+#
+#     sql = '''
+#             select %s
+#             from user
+#     '''
+#
+#     cursor.execute(sql, (str(no)))
+#     result = cursor.fetchonebyno()
+#
+#     # 자원 정리
+#     cursor.close()
+#     conn.close()
+#
+#     return result
+
+
+
 def getconnection():
     return connect(
         user='mysite',

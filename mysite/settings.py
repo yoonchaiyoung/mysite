@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'main',
     'guestbook',
     'user',
+    'board',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,3 +129,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'statics'),
 )
 STATIC_URL = '/assets/'
+
+# session
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
