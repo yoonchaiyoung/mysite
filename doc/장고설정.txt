@@ -27,7 +27,7 @@ mysqlclient 설치
 4.
 장고 프로젝트 생성
 터미널에서
-# django-admin startproject django-practices
+# django-admin startproject mysite
 
 5.
 디렉토리 정리

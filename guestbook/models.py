@@ -7,12 +7,10 @@ def fetchlist():
     conn = getconnection()
     cursor = conn.cursor(DictCursor)
 
-    sql = '''select no, 
-	                name, 
-	                message, 
-	                date_format(reg_date, '%Y-%m-%d %p %h:%i:%s') as reg_date 
-                from guestbook
-                order by no desc
+    sql = '''
+        SELECT no, name, message, date_format(reg_date, '%Y-%m-%d %p %h:%i:%s') as reg_date
+        FROM guestbook
+        ORDER BY no desc;
         '''
     cursor.execute(sql)
     results = cursor.fetchall()
@@ -47,9 +45,9 @@ def delete(no, password):
     cursor = conn.cursor()
 
     sql = '''
-        delete 
-        from guestbook 
-        where no=%s and password=%s
+        DELETE
+        FROM guestbook
+        WHERE no=%s and password=%s
     '''
     cursor.execute(sql, (no, password))
     conn.commit()

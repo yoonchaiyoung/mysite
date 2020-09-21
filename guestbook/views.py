@@ -5,10 +5,6 @@ import guestbook.models as guestbookmodel
 
 
 def index(request):
-    return render(request, 'guestbook/index.html')
-
-
-def index(request):
     # return HttpResponse('<h1>Hello World</h1>', content_type='text/html')
     results = guestbookmodel.fetchlist()
     data = {'guestbooklist': results}
@@ -23,7 +19,7 @@ def add(request):
 
     guestbookmodel.insert(name, password, message)
 
-    return HttpResponseRedirect('guestbook/index.html')
+    return HttpResponseRedirect('/guestbook')
 
 
 def deleteform(request):
@@ -33,6 +29,8 @@ def deleteform(request):
 def delete(request):
     no = request.POST['no']
     password = request.POST['password']
+    # print(no)
+    # print(password)       // 잘 전달되는 지 확인
 
     guestbookmodel.delete(no, password)
-    return HttpResponseRedirect('guestbook/index.html')
+    return HttpResponseRedirect('/guestbook')

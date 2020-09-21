@@ -41,7 +41,7 @@ def login(request):
 
 
 def logout(request):
-    del request.session['authuser']
+    del request.session['authuser']     # 세션 삭제
     return HttpResponseRedirect('/')
 
 
@@ -49,8 +49,8 @@ def updateform(request):
     no = request.session['authuser']['no']
 
     # 1. 데이터를 가져오기
-    # result = usermodels.fetchonebyno(no)
-    # data = {'user': result}
+    result = usermodels.fetchonebyno(no)
+    data = {'user': result}
 
     return render(request, 'user/updateform.html')
 
