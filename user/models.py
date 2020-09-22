@@ -23,10 +23,9 @@ def fetchone(email, password):
     cursor = conn.cursor(DictCursor)
 
     sql = '''
-            select no, name
-            from user
-            where email=%s
-            and password=password(%s)
+            SELECT no, name
+            FROM user
+            WHERE email=%s AND password=password(%s)
             '''
     cursor.execute(sql, (email, password))
     result = cursor.fetchone()
@@ -39,23 +38,44 @@ def fetchone(email, password):
 
 
 
-# def fetchonebyno(no):
-#     conn = getconnection()
-#     cursor = conn.cursor(DictCursor)
-#
-#     sql = '''
-#             select %s
-#             from user
-#     '''
-#
-#     cursor.execute(sql, (str(no)))
-#     result = cursor.fetchonebyno()
-#
-#     # 자원 정리
-#     cursor.close()
-#     conn.close()
-#
-#     return result
+def fetchonebyno(no):
+    conn = getconnection()
+    cursor = conn.cursor(DictCursor)
+
+    sql = '''
+            SELECT *
+            FROM user
+            WHERE no=%s;
+            '''
+
+    cursor.execute(sql, (no,))
+    result = cursor.fetchone()
+
+    # 자원 정리
+    cursor.close()
+    conn.close()
+
+    return result
+
+
+def update(name, email, password, gender, no):
+    conn = getconnection()
+    cursor = conn.cursor(DictCursor)
+
+    sql = '''
+            UPDATE user
+            SET name=%s, email=%s, password=password(%s), gender=%s
+            WHERE no=%s
+        '''
+
+    cursor.execute(sql, (name, email, password, gender, str(no)))
+    conn.commit()
+
+    # 자원 정리
+    cursor.close()
+    conn.close()
+
+    return
 
 
 

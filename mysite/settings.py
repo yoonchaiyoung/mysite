@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'main',
     'guestbook',
-    # 'user',
+    'user',
     # 'board',
     'django.contrib.admin',
     'django.contrib.auth',

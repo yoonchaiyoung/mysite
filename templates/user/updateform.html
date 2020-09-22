@@ -7,16 +7,16 @@
 {% block content %}
 			<div id="user">
 
-				<form id="join-form" name="joinForm" method="post" action="/user/update">
+				<form id="join-form" name="joinForm" method="post" action="/user/update?no={{request.session.authuser.no}}">
 					{% csrf_token %}
-					<label class="block-label" for="no">번호</label>
-					<input type="hidden" name="no" value="{{  request.GET.no  }}">
+					<label class="block-label" for="no"></label>
+					<input type="hidden" name="no" value="{{request.session.authuser.no}}">
 
 					<label class="block-label" for="name">이름</label>
 					<input id="name" name="name" type="text" value="">
 
                     <label class="block-label" for="email">이메일</label>
-					<input type="text" name="email" value=""{{  request.GET.email  }}">
+					<input type="text" name="email" value="">
 
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">

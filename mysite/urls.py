@@ -37,7 +37,7 @@ urlpatterns = [
     path('user/logout', userviews.logout),
     path('user/updateform', userviews.updateform),
     path('user/update', userviews.update),
-    #
+
     # path('board/', boardviews.index),
 
     path('admin/', admin.site.urls),

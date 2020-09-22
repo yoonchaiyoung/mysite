@@ -20,12 +20,12 @@ def join(request):
 
     usermodels.insert(name, email, password, gender)
     return HttpResponseRedirect('/user/joinsuccess')
-
-
+#
+#
 def loginform(request):
     return render(request, 'user/loginform.html')
-
-
+#
+#
 def login(request):
     email = request.POST['email']
     password = request.POST['password']
@@ -38,13 +38,13 @@ def login(request):
     request.session['authuser'] = result
 
     return HttpResponseRedirect('/')
-
-
+#
+#
 def logout(request):
     del request.session['authuser']     # 세션 삭제
     return HttpResponseRedirect('/')
-
-
+#
+#
 def updateform(request):
     no = request.session['authuser']['no']
 
@@ -53,14 +53,18 @@ def updateform(request):
     data = {'user': result}
 
     return render(request, 'user/updateform.html')
-
-
+#
+#
 def update(request):
     no = request.session['authuser']['no']
     name = request.POST['name']
     email = request.POST['email']
+    password = request.POST['password']
+    gender = request.POST['gender']
 
-    request.session.authuser = {'no': no, 'name': name, 'email': email}
-    # request.session['authuser'] ['name'] = name
+    usermodels.update(name, email, password, gender, no)
+
+    result = usermodels.fetchone(email, password)
+    request.session['authuser']['name'] = name
 
     return render(request, 'user/update.html')
