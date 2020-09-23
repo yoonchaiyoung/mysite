@@ -19,3 +19,13 @@ def write(request):
 
     boardmodels.insert(title, content, no)
     return HttpResponseRedirect('/board')
+
+def view(request):
+    boardno = request.GET['no']
+    result = boardmodels.fetchone(boardno)
+
+    print(result['title'])
+    print(result['content'])
+    data = {'board': result}
+    print(data)
+    return render(request, 'board/view.html', data)

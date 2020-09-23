@@ -11,6 +11,7 @@ def getconnection():
         db='mysite',
         charset='utf8')
 
+
 def fetchlist():
     conn = getconnection()
     cursor = conn.cursor(DictCursor)
@@ -30,6 +31,7 @@ def fetchlist():
 
     return results
 
+
 def insert(title, content, no):
     conn = getconnection()
     cursor = conn.cursor()
@@ -46,3 +48,20 @@ def insert(title, content, no):
     # 자원 정리
     cursor.close()
     conn.close()
+
+def fetchone(boardno):
+    conn = getconnection()
+    cursor = conn.cursor(DictCursor)
+
+    sql = '''
+        SELECT title, content
+        FROM user a, board b
+        WHERE a.no = b.user_no AND b.no=%s;
+          '''
+    cursor.execute(sql, (boardno,))
+    result = cursor.fetchone()
+    # 자원 정리
+    cursor.close()
+    conn.close()
+
+    return result

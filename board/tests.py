@@ -16,3 +16,9 @@ total_count = 74
 page_count = round(74 / SZLIST)
 print(page_count)
 
+
+
+def test_boardmodels_fetchonebyno():
+    result = boardmodels.fetchonebyno('13')
+
+test_boardmodels_fetchonebyno()

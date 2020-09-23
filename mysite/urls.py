@@ -41,6 +41,7 @@ urlpatterns = [
     path('board/', boardviews.index),
     path('board/writeform', boardviews.writeform),
     path('board/write', boardviews.write),
+    path('board/view', boardviews.view),
 
     path('admin/', admin.site.urls),
 ]
