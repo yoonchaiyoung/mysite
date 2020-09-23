@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'main',
     'guestbook',
     'user',
-    # 'board',
+    'board',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

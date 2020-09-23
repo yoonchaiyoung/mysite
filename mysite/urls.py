@@ -38,7 +38,9 @@ urlpatterns = [
     path('user/updateform', userviews.updateform),
     path('user/update', userviews.update),
 
-    # path('board/', boardviews.index),
+    path('board/', boardviews.index),
+    path('board/writeform', boardviews.writeform),
+    path('board/write', boardviews.write),
 
     path('admin/', admin.site.urls),
 ]
