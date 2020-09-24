@@ -30,7 +30,11 @@
 						<td>{{	board.name }}</td>
 						<td>{{board.hit}}</td>
 						<td>{{	board.reg_date	}}</td>
-						<td><a href="" class="del">삭제</a></td>
+						{% if flag == True %}								<!-- 로그인 했는가/하지 않았는가 -->
+							{% if session_user_no == board.user_no%}		<!-- 로그인 했다면 해당 게시글의 작성자가 나인가/내가 아닌가 -->
+							<td><a href="/board/delete?board_no={{board.no}}&user_no={{board.user_no}}&hit={{board.hit}}" class="del">삭제</a></td>
+							{% endif %}
+						{% endif %}
 					</tr>
 					{% endfor %}
 				</table>
@@ -48,9 +52,10 @@
 					</ul>
 				</div>
 				<!-- pager 추가 -->
-				
+				{% if flag == True %}
 				<div class="bottom">
 					<a href="/board/writeform" id="new-book">글쓰기</a>
-				</div>				
+				</div>
+				{% endif %}
 			</div>
 {% endblock %}

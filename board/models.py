@@ -17,7 +17,7 @@ def fetchlist():
     cursor = conn.cursor(DictCursor)
 
     sql = '''
-        SELECT b.no, b.title, a.name, b.hit, b.reg_date
+        SELECT b.no, b.title, a.name, b.hit, b.reg_date, b.user_no
         FROM user a, board b
         WHERE a.no=b.user_no
         ORDER BY reg_date DESC
@@ -54,7 +54,7 @@ def fetchone(boardno):
     cursor = conn.cursor(DictCursor)
 
     sql = '''
-        SELECT title, content
+        SELECT b.title, b.content, b.no, b.user_no, b.hit
         FROM user a, board b
         WHERE a.no = b.user_no AND b.no=%s;
           '''
@@ -65,3 +65,58 @@ def fetchone(boardno):
     conn.close()
 
     return result
+
+def update(title, content, no):
+    conn = getconnection()
+    cursor = conn.cursor()
+
+    sql = '''
+        UPDATE board
+        SET title=%s, content=%s
+        WHERE no=%s
+          '''
+    cursor.execute(sql, (title, content, str(no)))
+    conn.commit()
+
+    # 자원 정리
+    cursor.close()
+    conn.close()
+
+
+def delete(board_no):
+    conn = getconnection()
+    cursor = conn.cursor()
+
+    sql = '''
+           DELETE
+           FROM board
+           WHERE no=%s
+          '''
+    cursor.execute(sql, (board_no,))
+    conn.commit()
+
+    # 자원 정리
+    cursor.close()
+    conn.close()
+
+    return
+
+def updatehit(boardno):
+    conn = getconnection()
+    cursor = conn.cursor()
+
+    sql = '''
+        UPDATE board as b
+        JOIN user as a
+        ON a.no = b.user_no
+        SET b.hit=b.hit+1
+        WHERE b.no=%s
+          '''
+
+    cursor.execute(sql, (boardno,))
+    conn.commit()
+
+    # 자원 정리
+    cursor.close()
+    conn.close()
+
